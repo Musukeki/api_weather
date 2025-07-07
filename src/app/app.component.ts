@@ -29,7 +29,6 @@ export class AppComponent {
   dataTimeTrans: Array<any> = [];
 
   ngOnInit(): void {
-    console.log(this.allTime)
 
     // 呼叫服務(service)中的方法
     // subscribe 表示
@@ -56,13 +55,13 @@ export class AppComponent {
             })
         }
       })
-      // console.log(this.dataTimeTrans) // 全域時間控制
+      console.log(this.dataTimeTrans) // 全域時間控制
       this.locationInit()
     })
 
   }
 
-  locationInit() {
+  locationInit() { // 初始
     this.locationInfo.name = this.apiData.Location[0].LocationName; // 地區
     this.locationInfo.temp = this.apiData.Location[0].WeatherElement[0].Time[0].ElementValue[0].Temperature; // 溫度
     this.locationInfo.apparentTemp = this.apiData.Location[0].WeatherElement[3].Time[0].ElementValue[0].ApparentTemperature; // 體感溫度
@@ -77,12 +76,12 @@ export class AppComponent {
     this.locationInfo.weather = this.apiData.Location[0].WeatherElement[8].Time[0].ElementValue[0].Weather; // 天氣現象
     this.locationInfo.description = this.apiData.Location[0].WeatherElement[9].Time[0].ElementValue[0].WeatherDescription; // 綜合描述
 
-    this.locationInfo.chooseTime = `${new Date(this.dataTime[0].StartTime).getFullYear()}/${new Date(this.dataTime[0].StartTime).getMonth()+1}/${new Date(this.dataTime[0].StartTime).getDate()} (${new Date(this.dataTime[0].StartTime).getHours()}時)`
+    this.locationInfo.transTime = `${new Date(this.dataTime[0].StartTime).getFullYear()}/${new Date(this.dataTime[0].StartTime).getMonth()+1}/${new Date(this.dataTime[0].StartTime).getDate()} (${new Date(this.dataTime[0].StartTime).getHours()}時)`
   }
 
   chooseLocation(event: MouseEvent) {
     let elementName = (event.target as HTMLButtonElement).className
-    console.log(this.apiData.Location)
+    console.log(this.apiData.Location, elementName)
     for(let name of this.apiData.Location) {
       if(name.LocationName == elementName) { // 地區
         this.locationInfo.name = name.LocationName
@@ -113,6 +112,7 @@ export class AppComponent {
             new Date(apparentTemp.DataTime).getFullYear() == new Date(this.localTime).getFullYear() &&
             new Date(apparentTemp.DataTime).getMonth() == new Date(this.localTime).getMonth() &&
             new Date(apparentTemp.DataTime).getDate() == new Date(this.localTime).getDate() &&
+            new Date(apparentTemp.DataTime).getHours() <= new Date(this.localTime).getHours() &&
             new Date(apparentTemp.DataTime).getHours() <= new Date(this.localTime).getHours()) {
 
               this.locationInfo.apparentTemp = apparentTemp.ElementValue[0].ApparentTemperature
@@ -281,19 +281,14 @@ export class AppComponent {
           }
         }
       }
-
-
-      // 區間
-      // console.log(data)
     }
-    console.log(this.locationInfo)
+    // console.log(this.locationInfo)
   }
 
   checkTime(event: MouseEvent) {
     let elementTime = (event.target as HTMLButtonElement).id
     this.locationInfo.chooseTime = elementTime
-    // console.log(this.apiData.Location)
-    this.locationInfo.chooseTime = (event.target as HTMLButtonElement).innerText;
+    this.locationInfo.transTime = (event.target as HTMLButtonElement).innerText;
 
     for(let item of this.apiData.Location) {
       if(item.LocationName == this.locationInfo.name) {
