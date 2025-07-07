@@ -1,0 +1,55 @@
+<header>
+  <div class="container">
+    <h1>{{ apiData.LocationsName }} 未來三日各地區氣象情報</h1>
+    <ul class="navbar">
+      @for (item of apiData.Location; track $index) {
+        <li>
+          <a [className]="item.LocationName" (click)="chooseLocation($event)" [id]="$index">{{ item.LocationName }}</a>
+        </li>
+      }
+    </ul>
+  </div>
+</header>
+<section class="main">
+  <div class="container">
+    <ul class="dateList">
+      @for( item of dataTimeTrans; track $index ) {
+        <li>
+          <a [id]="item.timeOrigin" (click)="checkTime($event)">{{ item.timeTrans }} </a>
+        </li>
+      }
+    </ul>
+
+    <div class="main-info">
+      <ul>
+        <li>時間：<br><span>{{ locationInfo.chooseTime }}</span></li>
+        <li>地區：<br><span>{{ locationInfo.name }}</span></li>
+        <li>溫度：<br><span>{{ locationInfo.temp }}°C</span></li>
+        <li>體感溫度：<br><span>{{ locationInfo.apparentTemp }}°C</span></li>
+        <li>相對濕度：<br><span>{{ locationInfo.humidity }}</span></li>
+        <li>風向：<br><span>{{ locationInfo.windRose }}</span></li>
+        <li>
+          <div style="height: 50%;">
+            風速：<span>{{ locationInfo.windSpeed }}</span>
+          </div>
+          <div style="height: 50%;">
+            蒲福風速：<span></span>{{ locationInfo.beaufortScale }}
+          </div>
+        </li>
+        <li>
+          <div style="height: 50%;">
+            舒適指數：<span>{{ locationInfo.comfortIndex }}</span>
+          </div>
+          <div style="height: 50%;">
+            舒適度：<span>{{ locationInfo.comfortDescription }}</span>
+          </div>
+      </li>
+        <li>3小時降雨機率：<br><span>{{ locationInfo.precipitation }}%</span></li>
+        <li>天氣現象：<br><span>{{ locationInfo.weather }}</span></li>
+        <li>天氣預報綜合描述：<br><span>{{ locationInfo.description }}</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
