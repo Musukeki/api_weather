@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "api_demo": {
+    "api_weather": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -28,7 +28,8 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "public"
+                "input": "public",
+                "output": ""
               }
             ],
             "styles": [
@@ -65,10 +66,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "api_demo:build:production"
+              "buildTarget": "api_weather:build:production"
             },
             "development": {
-              "buildTarget": "api_demo:build:development"
+              "buildTarget": "api_weather:build:development"
             }
           },
           "defaultConfiguration": "development"
