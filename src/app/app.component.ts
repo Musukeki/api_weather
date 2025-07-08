@@ -55,10 +55,9 @@ export class AppComponent {
             })
         }
       })
-      console.log(this.dataTimeTrans) // 全域時間控制
+      // console.log(this.dataTimeTrans) // 全域時間控制
       this.locationInit()
     })
-
   }
 
   locationInit() { // 初始
@@ -81,7 +80,7 @@ export class AppComponent {
 
   chooseLocation(event: MouseEvent) {
     let elementName = (event.target as HTMLButtonElement).className
-    console.log(this.apiData.Location, elementName)
+    // console.log(this.apiData.Location, elementName)
     for(let name of this.apiData.Location) {
       if(name.LocationName == elementName) { // 地區
         this.locationInfo.name = name.LocationName
@@ -282,7 +281,6 @@ export class AppComponent {
         }
       }
     }
-    // console.log(this.locationInfo, this.apiData)
   }
 
   checkTime(event: MouseEvent) {
@@ -349,7 +347,6 @@ export class AppComponent {
         }
       }
     }
-    console.log(this.locationInfo)
   }
 
 }

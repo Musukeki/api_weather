@@ -1,8 +1,8 @@
 <header>
   <div class="container">
-    <h1>{{ apiData.LocationsName }} 未來三日各地區氣象情報</h1>
+    <h1>{{ apiData.LocationsName! }} 未來三日各地區氣象情報</h1>
     <ul class="navbar">
-      @for (item of apiData.Location; track $index) {
+      @for (item of apiData.Location!; track $index) {
         <li>
           <a [className]="item.LocationName" (click)="chooseLocation($event)" [id]="$index">{{ item.LocationName }}</a>
         </li>

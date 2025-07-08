@@ -59,4 +59,9 @@ a {
 }
 body {
   background-color: #f1f1f178;
+  background-image: url('/icon_sun.svg'), url('/icon_rain.svg');
+  background-size: 100px, 100px;
+  background-repeat: no-repeat;
+  background-position: 50px 120px, right 30px bottom 200px ;
+
 }
