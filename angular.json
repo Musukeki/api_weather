@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/api_demo",
+            "outputPath": "dist/api_weather",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
