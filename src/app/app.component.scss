@@ -32,6 +32,7 @@ header {
   .container {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 48px;
   }
   .dateList {
     width: 25%;
@@ -100,4 +101,9 @@ header {
       border-radius: 12px;
     }
   }
+}
+
+.footer {
+  height: 80px;
+  background: #898AC4;
 }

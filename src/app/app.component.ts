@@ -282,7 +282,7 @@ export class AppComponent {
         }
       }
     }
-    // console.log(this.locationInfo)
+    // console.log(this.locationInfo, this.apiData)
   }
 
   checkTime(event: MouseEvent) {
